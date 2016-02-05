@@ -3,8 +3,7 @@ var date = require('phpdate-js');
 
 var sms_recipients = ['0123456789'];
 var sms_text = 'test d\'envoi à ' + date('Y-m-d H:i:s') + ' ';
-var sms_type = octopush.constants.SMS_PREMIUM;
-var sms_mode = octopush.constants.INSTANTANE;
+var sms_type = octopush.constants.SMS_WORLD;
 var sms_sender = 'UnSender';
 
 var sms = new octopush.SMS('email@domain.com', 'your_api_key');

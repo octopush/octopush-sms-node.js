@@ -69,7 +69,7 @@ sms.send(function(e, r){
 });
 ```
 
-More examples can be found in [examples/](examples/).
+More examples can be found in [Simple Examples](examples/simple_examples/) and [Advanced Examples](examples/advanced_examples/).
 
 ## Requirements
 
