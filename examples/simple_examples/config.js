@@ -1,4 +1,4 @@
-var octopush = require('./lib/octopush');
+var octopush = require('octopush');
 
 module.exports = {
     user_login: '*******@*******',
