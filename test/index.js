@@ -2,7 +2,6 @@ var expect = require('chai').expect;
 var should = require('chai').should();
 var octopush = require('../lib/octopush.js');
 var date = require('phpdate-js');
-var nock = require('nock');
 
 if((process.env.OCTOPUSH_USER_LOGIN != undefined)&&(process.env.OCTOPUSH_API_KEY != undefined)) {
     describe('octopush net tests (if OCTOPUSH_USER_LOGIN and OCTOPUSH_API_KEY are set)', function () {
