@@ -1,0 +1,20 @@
+{
+  "name": "octopush",
+  "version": "1.0.0",
+  "description": "Octopush API wrapper",
+  "main": "lib/octopush.js",
+  "dependencies": {
+    "phpdate-js": "^1.0.2",
+    "request": "^2.69.0",
+    "xml2js": "^0.4.16"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec --timeout 20000"
+  },
+  "author": "Roman Ragimoff <roma.ragimoff@gmail.com>",
+  "license": "ISC"
+}
