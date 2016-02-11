@@ -5,16 +5,16 @@ var date = require('phpdate-js');
 
 if((process.env.OCTOPUSH_USER_LOGIN != undefined)&&(process.env.OCTOPUSH_API_KEY != undefined)) {
     describe('octopush net tests (if OCTOPUSH_USER_LOGIN and OCTOPUSH_API_KEY are set)', function () {
-        it('should take balance of user', function (done) {
+        it('should take credit of user', function (done) {
             var sms = new octopush.SMS(process.env.OCTOPUSH_USER_LOGIN, process.env.OCTOPUSH_API_KEY);
-            sms.get_balance(function (e, r) {
+            sms.get_credit(function (e, r) {
                 expect(e).to.be.equal(false);
-                expect(r.octopush.balance).to.be.not.empty;
+                expect(r.octopush.credit).to.be.not.empty;
                 done();
             });
         });
     });
-};
+}
 
 describe('octopush.sms', function(){
     it('should create client with user_login and api_key', function(){
@@ -51,7 +51,7 @@ describe('octopush.sms', function(){
     it('should set sms_type', function(){
         var sms = new octopush.SMS();
 
-        expect(sms.config.sms_type).to.be.equal(octopush.constants.SMS_STANDARD);
+        expect(sms.config.sms_type).to.be.equal(octopush.constants.SMS_WORLD);
         sms.set_sms_type('test_value');
         expect(sms.config.sms_type).to.be.equal('test_value');
     });
@@ -104,18 +104,10 @@ describe('octopush.sms', function(){
         expect(sms.config.sms_fields_3.length).to.be.equal(2);
     });
 
-    it('should set sms_mode', function(){
-        var sms = new octopush.SMS();
-
-        expect(sms.config.sms_mode).to.be.equal(octopush.constants.INSTANTANE);
-        sms.set_sms_mode(octopush.constants.DIFFERE);
-        expect(sms.config.sms_mode).to.be.equal(octopush.constants.DIFFERE);
-    });
-
     it('should set sms_sender', function(){
         var sms = new octopush.SMS();
 
-        expect(sms.config.sms_sender).to.be.equal('CampagneSMS');
+        expect(sms.config.sms_sender).to.be.equal('AnySender');
         sms.set_sms_sender('TestSender');
         expect(sms.config.sms_sender).to.be.equal('TestSender');
     });
@@ -123,13 +115,8 @@ describe('octopush.sms', function(){
     it('should set sms_date', function(){
         var sms = new octopush.SMS();
 
-        expect(sms.config.sms_y).to.be.equal(date("Y"));
-        expect(sms.config.sms_m).to.be.equal(date("m"));
-        expect(sms.config.sms_d).to.be.equal(date("d"));
-        expect(sms.config.sms_h).to.be.equal(date("H"));
-        expect(sms.config.sms_i).to.be.equal(date("i"));
-        sms.set_date(2000, 1, 1, 0, 0);
-        expect(sms.config.sending_date).to.be.equal(Math.floor(new Date(2000, 1 - 1, 1, 0, 0).getTime() / 1000));
+        sms.set_time(2000, 1, 1, 0, 0);
+        expect(sms.config.sending_time).to.be.equal(Math.floor(new Date(2000, 1 - 1, 1, 0, 0).getTime() / 1000));
     });
 
     it('should set request_mode', function(){
@@ -224,61 +211,5 @@ describe('octopush.sms', function(){
             'sms_text': 'àбрвалг'
         });
         expect(hash).to.be.equal('c611522535baf80debd3f24bafa434d14fb21d9d');
-    });
-});
-
-describe('octopush.ows', function(){
-    //var recorder = vcr('octopush_ows');
-    //recorder.before();
-
-    //before(recorder.before);
-
-    it('should create client with user_login and api_key', function(){
-        var ows = new octopush.OWS('user_login', 'api_key');
-
-        expect(ows.config.user_login).to.be.equal('user_login');
-        expect(ows.config.api_key).to.be.equal('api_key');
-    });
-
-    it('should set user_login', function(){
-        var ows = new octopush.OWS();
-
-        expect(ows.config.user_login).to.be.empty;
-        ows.set_user_login('test_value');
-        expect(ows.config.user_login).to.be.equal('test_value');
-    });
-
-    it('should set api_key', function(){
-        var ows = new octopush.OWS();
-
-        expect(ows.config.api_key).to.be.empty;
-        ows.set_api_key('test_value');
-        expect(ows.config.api_key).to.be.equal('test_value');
-    });
-
-    it('should set answer_email', function(){
-        var ows = new octopush.OWS();
-
-        expect(ows.config.answer_email).to.be.equal(-1);
-        ows.set_answer_email('test_value');
-        expect(ows.config.answer_email).to.be.equal('test_value');
-    });
-
-    it('should set sms_alert_bound', function(){
-        var ows = new octopush.OWS();
-
-        expect(ows.config.sms_alert_bound).to.be.equal(-1);
-        ows.set_sms_alert_bound('1');
-        expect(ows.config.sms_alert_bound).to.be.equal(1);
-    });
-
-    it('should set sms_alert_type', function(){
-        var ows = new octopush.OWS();
-
-        expect(ows.config.sms_alert_type).to.be.equal(-1);
-        ows.set_sms_alert_type('2');
-        expect(ows.config.sms_alert_type).to.be.equal(-1);
-        ows.set_sms_alert_type(octopush.constants.SMS_STANDARD);
-        expect(ows.config.sms_alert_type).to.be.equal(octopush.constants.SMS_STANDARD);
     });
 });

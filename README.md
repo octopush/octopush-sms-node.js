@@ -39,8 +39,8 @@ var config = require('./config.js');
 
 var sms = new octopush.SMS(config.user_login, config.api_key);
 
-sms.get_balance(function(e, r){
-    console.log(r.octopush.balance);
+sms.get_credit(function(e, r){
+    console.log(r.octopush.credit);
 });
 ```
 
@@ -55,7 +55,6 @@ var sms = new octopush.SMS(config.user_login, config.api_key);
 sms.set_sms_text(config.sms_text);
 sms.set_sms_recipients(config.sms_recipients);
 sms.set_sms_type(config.sms_type);
-sms.set_sms_mode(config.sms_mode);
 sms.set_sms_sender(config.sms_sender);
 sms.set_sms_request_id(sms.uniqid());
 

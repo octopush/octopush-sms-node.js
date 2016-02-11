@@ -1,8 +1,8 @@
 var octopush = require('octopush');
+var config = require('./config.js');
 
-var sms = new octopush.OWS('email@domain.com', 'your_api_key');
-sms.get_balance(function(e, r){
-    for(var i = 0; i < r.octopush.balance.length; i++) {
-        console.log(r.octopush.balance[i]['$'].type, r.octopush.balance[i]['_']);
-    }
+var sms = new octopush.SMS(config.user_login, config.api_key);
+
+sms.get_credit(function(e, r){
+    console.log(r.octopush.credit);
 });

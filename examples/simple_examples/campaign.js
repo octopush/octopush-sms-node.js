@@ -1,17 +1,13 @@
 var octopush = require('octopush');
 var date = require('phpdate-js');
+var config = require('./config.js');
 
-var sms_recipients = ['0123456789'];
-var sms_text = 'test d\'envoi à ' + date('Y-m-d H:i:s') + ' ';
-var sms_type = octopush.constants.SMS_WORLD;
-var sms_sender = 'UnSender';
+var sms = new octopush.SMS(config.user_login, config.api_key);
 
-var sms = new octopush.SMS('email@domain.com', 'your_api_key');
-sms.set_sms_mode(sms_mode);
-sms.set_sms_text(sms_text);
-sms.set_sms_recipients(sms_recipients);
-sms.set_sms_type(sms_type);
-sms.set_sms_sender(sms_sender);
+sms.set_sms_text(config.sms_text);
+sms.set_sms_recipients(config.sms_recipients);
+sms.set_sms_type(config.sms_type);
+sms.set_sms_sender(config.sms_sender);
 sms.set_sms_request_id(sms.uniqid());
 sms.set_option_with_replies(0);
 sms.set_option_transactional(1);
