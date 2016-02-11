@@ -31,7 +31,7 @@ module.exports = {
 };
 ```
 
-### Balance check
+### Credit check
 
 ```javascript
 var octopush = require('octopush');
